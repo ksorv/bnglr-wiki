@@ -10,7 +10,6 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = React.useCallback(() => {
-    console.log(theme)
     let nextTheme = theme;
     switch (theme) {
       case "light":
@@ -23,7 +22,6 @@ export function ThemeToggle() {
         nextTheme = "light";
         break;
     }
-    console.log({nextTheme});
 
     setTheme(nextTheme);
   }, [theme, setTheme]);

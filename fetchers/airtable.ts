@@ -26,7 +26,6 @@ export async function getRecords() {
     ],
   });
 
-  console.log(table);
   const places: Array<Place> = [];
 
   try {
