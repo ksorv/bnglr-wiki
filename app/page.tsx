@@ -42,7 +42,7 @@ export default async function Home() {
             Bangalore Wiki
           </h1>
           <p className="text-md md:text-2xl font-semibold text-slate-50 mt-4 text-center">
-            A place for lost soulds to find something :)
+            A place for people to find awesome stuff :)
           </p>
         </div>
       </section>
