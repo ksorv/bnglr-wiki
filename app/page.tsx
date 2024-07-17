@@ -1,11 +1,16 @@
 import Image from "next/image";
-import Skyline from '@/images/slr-skyline.jpg'
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { PlusIcon, StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
+import Skyline from "@/images/slr-skyline.jpg";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/section/section";
+import Link from "next/link";
+import { getRecords } from "@/fetchers/airtable";
+import { parseRecords } from "@/utils/parser";
 
-export default function Home() {
+export default async function Home() {
+  const places = await getRecords();
+  const parsedPlaces = parseRecords(places);
+
   return (
     <main className="min-h-screen pb-24">
       <section className="flex flex-col gap-2 relative">
@@ -41,14 +46,23 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <Section />
-      <Section />
-      <Button
-        size="icon"
-        className="h-16 w-16 rounded-full fixed bottom-8 right-8"
-      >
-        <PlusIcon className="h-8 w-8" />
-      </Button>
+      {parsedPlaces.length ? (
+        parsedPlaces.map((record) => (
+          <Section record={record} key={record[0]} />
+        ))
+      ) : (
+        <p className="text-center text-xl text-foreground p-4">
+          Woah! No valid records exist!
+        </p>
+      )}
+      <Link href={"create"}>
+        <Button
+          size="icon"
+          className="h-16 w-16 rounded-full fixed bottom-8 right-8"
+        >
+          <PlusIcon className="h-8 w-8" />
+        </Button>
+      </Link>
     </main>
   );
 }
