@@ -10,7 +10,7 @@ const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Bangalore Wiki",
-  description: "A guide to Bangalore for Lost souls",
+  description: "A guide to Bangalore for Lost souls :)",
   openGraph: {
     images: ["/opengraph-image.png"],
   },
